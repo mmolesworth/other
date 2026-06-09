@@ -1,0 +1,145 @@
+CAC Salesforce Baseline Presentation Outline (Rebuild)
+Audience: OCIO
+Working governing thought (internal orientation, not verbatim in the deck): The system is not well enough understood to execute the coming changes safely, communicate about them clearly, or fund them accurately. A documented physical baseline, a well-architected review, business-driven test cases, and a governance plan establish the foundation needed to proceed.
+Structure (SCR): Situation (slides 1-3), Complication (slides 4-5), Question (slide 6), Resolution (slide 7 overview plus four deliverable detail slides, slides 8-11), transition question (slide 12), Discussion (slide 13). An optional closing recap (slide 14) is noted but not built.
+> Working notes: titles are conclusions, numbered, no label in front. Titles below are a first pass; bullets get built slide by slide.
+---
+SCR Structure
+Situation
+The System Is Heavily Customized, and Its Problems Aren't Yet Visible
+Over more than a decade, the system has been heavily customized, built largely on custom versions of capabilities Salesforce now provides out of the box.
+Running on those custom versions, it misses built-in features and the improvements Salesforce delivers over time, and every custom piece is maintained by hand.
+What's documented describes how the system works, not deeply enough to reveal its problems.
+For example, the documents lay out the data model but not how it's been customized, so the problems in it stay out of view.
+Its problems surface only when work runs into them, so the full set can't be seen in advance.
+(Spoken, not on the slide: we've seen this in the first area we examined and expect the same elsewhere.)
+Knowledge of the System Is Fragmented With No Common Reference Across Stakeholders
+Business knowledge of what the system should do sits with OCFP; technical knowledge of how it's built sits with the support team.
+OCIO, OCFP, and the support team don't share an agreed picture of the current state, so each works from a partial view.
+That knowledge lives in people rather than a maintained record, so it's incomplete today and leaves when the team changes.
+Three High-Stakes Changes Are Imminent, and Each One Depends on Understanding the System
+Coordinating the Lightning upgrade depends on identifying the dependencies it touches and aligning the parties and systems it has to work around.
+The new backup and recovery solution captures data automatically, but a correct recovery depends on knowing the dependencies, automation, and integrations that make the system work.
+Reworking the data architecture can't be planned without knowing what the current custom build does and what depends on it.
+Complication
+Without a Baseline, the Full Cost of Every High-Stakes Initiative Is Invisible Until It Is Too Late
+Today the true cost of each initiative is a guess, because nothing maps the work it actually involves.
+The dependencies that drive the real cost stay hidden until the work is underway, so the true scope often becomes clear only after the plan is set.
+That raises the risk on the high-stakes work ahead, which the system has to take on while still running the business.
+Without a Foundation, Every Change Carries Risk and Decisions Rest on Assumptions
+(Spoken open, verbatim: "You are about to do high-stakes things to a system nobody fully understands, and without this foundation, those changes carry real risk.")
+Without visibility into the dependencies, there's no way to judge the risk of a change before making it.
+With no safety net, a breaking change can go unnoticed until it reaches production.
+Without a shared, documented reference, discussions turn on whoever knows the system best, not on facts everyone can see.
+Question
+How Do We Establish the Foundation Needed to Proceed With Confidence?
+(No bullets. The question stands alone to mark the turn from problem to answer.)
+Resolution
+Seeing the System and Controlling Change Lower the Risk on the Work Ahead
+See the System
+Inventory physical components
+Well-architected review
+Group outcome: OCIO gains oversight confidence from one shared, authoritative picture of the system.
+Control the Change
+Business-driven test cases
+O&M plan
+Group outcome: the system can change without raising the chance of an unplanned outage or unbounded scope.
+Inventorying the Physical Components Makes the As-Built System Visible and Verified
+Outcome: Establishes a single authoritative source for how the system is actually built, its dependencies, automation, and integrations, kept under version control, in place of knowledge that today is partial and lives in people.
+What it delivers
+Sized on fact, not guesswork. With the baseline in place, each initiative can be broken down and costed on what the work actually involves.
+Conversations on facts. A shared, documented reference levels the field, so discussions aren't decided by whoever happens to know the system best.
+Stays current, not another stale document. Under version control, every change to the record is tracked and it keeps pace with the system.
+Build knowledge survives team changes. What today lives in people, and leaves when the team turns over, is held in a maintained record, removing a single point of failure.
+What it covers and how
+The inventory catalogs the org's components: objects, fields, Visualforce pages, Apex classes, workflow rules, etc.
+Draft in about a week, then verified by OCIO, then by OCFP.
+A Well-Architected Review Surfaces Hidden Risks and Ranks What to Fix
+Outcome: Surfaces the system's hidden problems and critical risks before the upcoming changes run into them, and returns a prioritized list of what to fix.
+What it delivers
+A structured review against proven standards. A well-architected review answers a set of foundational questions to identify the system's critical issues and the areas that could be improved, and returns a set of recommended actions.
+It reveals what isn't visible today. The review uncovers previously unknown issues and hidden architectural debt, the long-standing design problems that stay invisible until a change runs into them, and shows how well the system aligns with best practices.
+Risks found before the one-way doors. Critical issues surface before the upcoming changes lock in choices that are hard to reverse.
+Repeatable as the system changes. The review can be re-run as the architecture evolves, so the picture stays honest through the Lightning upgrade and the migration.
+What it covers and how
+The review rates the system on security, reliability, performance, and how easily it can change, against a recognized standard.
+Findings delivered as a ranked report, then walked through with OCIO.
+Business-Driven Test Cases Catch a Breaking Change Before It Reaches Production
+Outcome: Reduce the likelihood and severity of a breaking change reaching production, by checking before release that the system still does what the business needs.
+What it delivers
+Tests written from what the business needs, not from the code. Each test states a result the business expects, so the system is checked in business terms rather than technical ones.
+A breaking change is caught before release. When a change would stop the system doing what the business depends on, the tests flag it before it reaches production, instead of after consumers feel it.
+Confidence to make the upcoming changes. Because the tests are tied to business behavior rather than how the system is built, re-running them after the Lightning upgrade or the migration confirms that what the business relies on still works, even as the implementation changes.
+A path to automated testing that lasts beyond the upgrade. The work evaluates what should be automated and delivers a recommendation, so the safety net runs on every change at low effort throughout ongoing operations, not just once for the Lightning upgrade.
+What it covers and how
+The core business processes the system supports, prioritized by impact and by what the upcoming changes touch.
+An evaluation of testing automation needs and a recommendation the program can adopt for ongoing operations.
+Expected behavior defined with OCFP, written up as tests, then run before each release.
+Revising the O&M Plan Makes Its Commitments Accurate and Verifiable
+Outcome: Revises the existing O&M Plan so it describes how the system is actually operated, secured, monitored, and recovered, in terms that can be verified, in place of assertions that are inaccurate or can't be confirmed.
+What it delivers
+A plan that matches the system as it runs. Descriptions are corrected to the current system, so the plan can be relied on rather than describing tools and processes that aren't actually in use.
+Claims that can be verified. Each control states how it is confirmed and how often, so "the system is secure" becomes something that can be checked and audited, not just asserted.
+Procedures someone can follow under pressure. Incident response, monitoring, and recovery carry the real steps, owners, and frequency, so the plan can be executed, not just read.
+Monitoring tied to how the system is actually watched. The plan defines what is monitored, by whom, and how often, and how security events flow into the SIEM the client already runs, so problems are detected and routed instead of missed.
+What it covers and how
+Revises the weak sections of the existing plan: security, version control and deployment, incident management, and monitoring and performance.
+Revised in place, building on the existing plan, with each assertion replaced by an accurate description and the procedure that backs it.
+Question (transition into Discussion)
+Which Pending Requests Do We Change on Today's System, and Which Fold Into the Modernization?
+(No bullets. The question stands alone to mark the turn from the foundation to the decisions the work in hand forces.)
+Discussion
+Each Pending Request Is a Choice to Build It Now or Build It Once
+Pending item	Risk of building it now	Risk of folding it into the modernization
+International address support	Adds to the system's custom debt, and if the modernization moves to standard address handling, the build and its data are redone	International addresses stay unsupported until the modernization, which may be a long wait
+Age-related security vulnerabilities	A fix tied to the legacy build may be discarded when the rebuild removes the cause, so part of the effort is spent twice	The exposure stays open until the rebuild ships, and security rarely tolerates a long wait
+External API tied to the data architecture	If the data model changes, the API is rebuilt against the new model, so it is built twice and against a moving target	The integration waits for the data-architecture decision, so the API consumer is held up
+Caption: The choice turns on whether waiting costs more than building it twice.
+Potential slide 14 (optional, not built; Mark to add if wanted). The deck currently ends on slide 13. Recommendation: do not build the original "agreement on scope, ownership, and boundaries" governance slide. That standing boundary is governance work that belongs in the O&M plan (slide 11), so as a standalone Discussion slide it duplicates slide 11 and drifts toward the internal team friction kept off the deck. If a closing beat is wanted, make it a lean "what we need from you" recap of the two asks, approve and fund the four deliverables, and decide the three buckets on slide 13, not a governance slide. End on slide 13 if the ask already lands clearly.
+Flag: Slide 3's second clause ("each one depends on understanding the system") is a bridging argument, not a pure Situation fact. Earn it in the bullets if OCIO won't accept it as given.
+---
+Reference Notes
+Central Complication Anchor
+Exact phrase, to use verbatim in the Complication: "you are about to do high-stakes things to a system nobody fully understands, and without this foundation, those changes carry real risk."
+OCIO Stakes (Three Failure Modes)
+Safety
+Changes will be attempted without the visibility to detect when they break something.
+Eliciting problems in the legacy system while simultaneously implementing changes creates scope creep with no boundary.
+Governance
+3. No common basis means the client, business, current contracting team, and any future contracting team will continue to miscommunicate about what needs to be done and how.
+Program
+4. Without a clear baseline and an understanding of what is wrong with it, a target architecture and a plan forward cannot be created.
+5. The Lightning upgrade, the backup solution (Own), and the migration risk being underfunded. Without a baseline, the full picture, work packages, and dependencies are invisible while ongoing business activities must be supported simultaneously.
+Deliverables (Priority Order)
+Document the physical layer, verify it aligns with existing documentation, and place it under source control.
+Perform a well-architected review.
+Create business-driven test cases that verify system expectations.
+O&M plan: the client's existing O&M Plan already outlines governance activities. The deliverable extends or formalizes within it the decision rights, change control, and change-request line. Closes the Governance failure mode. Sequencing is your call; the change-request line is the urgent slice needed before the rest.
+Settled Decisions
+The address change is not a complication and does not drive the deck. It may appear as an example if it serves a clear illustrative purpose; nothing more.
+The Complication section is driven by the three failure modes only: Safety, Governance, and Program.
+If the address example is used, the settled wording is: "Salesforce now handles international addresses with standard address fields, but the system stores addresses in plain custom fields."
+---
+Resume Here (Resolution complete; Discussion next)
+Slides 1-13 are finalized above. Slide 6 stands alone. Slide 7 is the Resolution overview; slides 8-11 are the four deliverable detail slides. Slide 12 is the transition question; slide 13 is the triage slide and the current close. The payoff slide has been dropped; its two parked items live on slide 8. Slide 14 is an optional closing recap, noted but not built (Mark to decide). The deck is otherwise complete.
+Slide 7 committed (overview). Title: "Seeing the System and Controlling Change Lower the Risk on the Work Ahead." Two groups (See the System; Control the Change), each listing its two deliverables by name and closing with a group-outcome line. The per-deliverable outcome descriptions moved off slide 7 and onto the individual detail slides.
+Slide 8 committed (inventory detail). Title: "Inventorying the Physical Components Makes the As-Built System Visible and Verified." Outcome line plus two zones: What it delivers (sized on fact, conversations on facts, stays current, knowledge survives turnover) and What it covers and how (component list with etc., draft in about a week then OCIO then OCFP). Both parked payoff items landed here.
+Slide 9 committed (well-architected review detail). Title: "A Well-Architected Review Surfaces Hidden Risks and Ranks What to Fix." What it delivers opens with two explanatory bullets (what the review is, why it helps) drawn from the AWS Well-Architected language, then the one-way-doors and repeatable bullets.
+Slide 10 committed (test cases detail). Title: "Business-Driven Test Cases Catch a Breaking Change Before It Reaches Production." What it delivers: business-driven not code-driven, breaking change caught before release, confidence through the upcoming changes, and a recommendation for automated testing that lasts beyond the upgrade. Scope now includes an automation evaluation and recommendation for ongoing operations. The prior "record of expected behavior" bullet was dropped.
+Slide 11 committed (O&M plan detail). Title: "Revising the O&M Plan Makes Its Commitments Accurate and Verifiable." Reframed from build-a-governance-plan to revise-the-existing-plan. Unifying thesis: the plan asserts what should be true but doesn't describe how it's done, verified, or whether it matches the system today. What it delivers: a plan that matches the system as it runs, claims that can be verified, procedures someone can follow, monitoring tied to the SIEM. Covers the weak sections (security, version control and deployment, incident management, monitoring and performance), revised in place. The five priority enhancements from the uploaded doc now live as speaker-notes specifics or as chosen examples, not as their own structure.
+Discussion slides 12-13, to build.
+
+We Should Fix Only What Can't Wait and Defer What We'll Rebuild Anyway (triage framework, O&M vs significant-change boundary).
+
+The Work Ahead Requires Agreement on Scope, Ownership, and Boundaries.
+Discussion, in progress.
+Slide 12 committed (transition question). "Which Pending Requests Do We Change on Today's System, and Which Fold Into the Modernization?" Stands alone, no bullets, parallel to slide 6. Pivots from the foundation to the decisions the work in hand forces.
+Slide 13 committed (triage). Title: "Each Pending Request Is a Choice to Build It Now or Build It Once." Bullets dropped. A three-row risk table (international address, age-related security vulnerabilities, external API tied to the data architecture) with two columns, the risk of building it now and the risk of folding it into the modernization, so the two columns read as the tradeoff. One-line caption under the table: "The choice turns on whether waiting costs more than building it twice." Neutral; the client makes the call. The guiding principle now lives in speaker notes, not on the slide.
+Slide 14, optional (not built). The "agreement on scope, ownership, and boundaries" governance slide was dropped: that boundary is governance work belonging to the O&M plan (slide 11), so a standalone slide duplicates it. If a closing beat is wanted, the recommendation is a lean "what we need from you" recap of the two asks (fund the four deliverables; decide the three buckets), not a governance slide. Noted in the Discussion section for Mark to add if he chooses.
+Open items, not blocking:
+Slide 8: "one week" scope (bounded first area vs whole org); OCFP's verification purpose.
+Slide 9: review scope (whole system vs only what the changes touch); duration; whether OCFP reviews findings.
+Slide 10: bound scope to highest-impact processes first; effort estimate.
+Slide 11: title sharpness (softened vs "Replaces Assertions With Operations You Can Confirm"); whether to put one concrete example on the slide (version-control inaccuracy is the most accessible); slide 7 grouping may be revisited since this deliverable now reaches beyond "Control the Change."
+Slide 12: "modernization" is the working term for the second bucket; pick one term and hold it across the deck. Option to add a recommended bucket per item if you want the slide to carry a point of view rather than stay neutral.
+Word note: avoid "sanction"; use "approve" or "back."
