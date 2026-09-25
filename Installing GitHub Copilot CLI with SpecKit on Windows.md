@@ -1,4 +1,4 @@
-# Installing GitHub Copilkot CLI with SpecKit on Windows
+# Installing GitHub Copilot CLI with SpecKit on Windows
 
 Step-by-step instructions for setting up a Windows workstation with Python (via uv), the GitHub Copilot CLI, and GitHub Spec Kit. All commands run in PowerShell. No administrator rights are needed unless noted.
 
