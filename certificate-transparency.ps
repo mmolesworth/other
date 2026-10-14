@@ -1,0 +1,47 @@
+# Query Certificate Transparency logs (crt.sh) for all certs issued under a domain.
+# Passive lookup of a public CT aggregator. Outputs to CSV.
+
+$domain  = "ncua.gov"
+$outFile = "$env:USERPROFILE\Desktop\ct-$domain.csv"
+
+try {
+    $results = Invoke-RestMethod -Uri "https://crt.sh/?q=%25.$domain&output=json" `
+        -MaximumRetryCount 3 -RetryIntervalSec 5 -ErrorAction Stop
+}
+catch {
+    Write-Error "crt.sh query failed: $($_.Exception.Message)"
+    return
+}
+
+# One cert can list several SANs in name_value (newline-separated).
+# Expand to one row per hostname, drop wildcards, de-duplicate per cert.
+$rows = foreach ($cert in $results) {
+    $hosts = $cert.name_value -split "`n" |
+        Sort-Object -Unique |
+        Where-Object { $_ -and $_ -notmatch '^\*' }
+
+    foreach ($h in $hosts) {
+        [pscustomobject]@{
+            hostname    = $h
+            issuer      = $cert.issuer_name
+            not_before  = [datetime]$cert.not_before
+            not_after   = [datetime]$cert.not_after
+            crtsh_id    = $cert.id
+        }
+    }
+}
+
+$rows |
+    Sort-Object hostname, not_before |
+    Export-Csv -Path $outFile -NoTypeInformation -Encoding UTF8
+
+Write-Host "Wrote $($rows.Count) rows to $outFile"
+
+# Quick view: earliest cert per hostname, useful for 'when did this first appear'
+$rows |
+    Group-Object hostname |
+    ForEach-Object {
+        $_.Group | Sort-Object not_before | Select-Object -First 1
+    } |
+    Sort-Object not_before |
+    Format-Table hostname, not_before, issuer -AutoSize
